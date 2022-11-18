@@ -2,3 +2,8 @@
     background-color: black;
     color: yellow;
 }
+
+.pessoas{
+    display: flex;
+    gap: 10px;
+}
