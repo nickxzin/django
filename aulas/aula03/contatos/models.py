@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 
 from django.utils import timezone
@@ -20,6 +21,7 @@ class Contato(models.Model):
     dataCriacao = models.DateTimeField(default=timezone.now)
     descricao = models.TextField(blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    mostrar = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nome+" "+self.sobrenome

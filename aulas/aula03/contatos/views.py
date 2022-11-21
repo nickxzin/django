@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Contato
 
 # Create your views here.
@@ -11,3 +11,9 @@ def index(request):
 
 def sobre(request):
     return render(request, 'contatos/sobre.html')
+
+def contatoDetail(request,nomeContato):
+    contato = get_object_or_404(Contato,nome=nomeContato)
+    return render(request,'contatos/contatoDetail.html',{
+        "contato": contato
+    })
