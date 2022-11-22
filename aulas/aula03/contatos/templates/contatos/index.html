@@ -5,7 +5,9 @@
 <h2>Estamos no Index</h2>
 <a href="{% url 'sobre'%}">Sobre</a>
 
-
+<form action="{% url 'busca'%}" method="get">
+    <input value="{{request.GET.busca}}" type="search" name="busca" id="searchInput" placeholder="Digite Aqui">
+</form>
 
 
 {%  for i in contatos%}
@@ -22,11 +24,11 @@
 {%endfor%}
 
 <div class="paginator">
-    {%for i in contatos.paginator.page_range%}
+    {%for pagina in contatos.paginator.page_range%}
     {% if contatos.number == pagina%}
-    <a href="?page={{pagina}}" style="background-color: gray;">{{pagina}}</a>
+    <a href="?page={{pagina}}&busca={{request.GET.busca}}" style="background-color: gray;">{{pagina}}</a>
     {%else%}
-    <a href="?page{{pagina}}">{{pagina}}</a>
+    <a href="?page={{pagina}}&busca={{request.GET.busca}}">{{pagina}}</a>
     {%endif%}
     {%endfor%}
 </div>

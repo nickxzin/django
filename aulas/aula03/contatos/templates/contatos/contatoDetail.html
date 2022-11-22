@@ -2,6 +2,11 @@
 {%block 'titulo'%}AGEDA{%endblock%}
 {%block 'conteudo'%}
 <h2>Estamos no {{contato.nome}}</h2>
+
+{%if contato.foto%}
+<img src="{{contato.foto.url}}" alt="" style="max-width: 200px;">
+{%endif%}
+
 <div class="pessoas">
     <h3>{{contato.sobrenome}}</h3>
     <h3>{{contato.email}}</h3>
