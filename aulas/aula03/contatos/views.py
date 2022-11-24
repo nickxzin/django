@@ -34,7 +34,7 @@ def busca(request):
     if busca is None:
         raise Http404()
     campos = Concat('nome',Value(' '),'sobrenome')
-    contatos = Contato.objects.annotate(nomeCompleto = campos).filter(
+    contatos = Contato.objects.annotate(nomeCompleto = campos).order_by().filter(
         Q(nomeCompleto__icontains = busca)|Q(email__icontains = busca),
         mostrar = True
     )
