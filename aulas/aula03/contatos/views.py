@@ -1,9 +1,10 @@
 from django.http import Http404
 from django.db.models import Q, Value
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import Contato
 from django.core.paginator import Paginator
 from django.db.models.functions import Concat
+from django.contrib import messages
 
 # Create your views here.
 
@@ -31,8 +32,9 @@ def contatoDetail(request,nomeContato):
 
 def busca(request):
     busca = request.GET.get("busca")
-    if busca is None:
-        raise Http404()
+    if not busca:
+        messages.add_message(request, messages.ERROR, 'Campo não pode estar vazio ')
+        redirect('index')
     campos = Concat('nome',Value(' '),'sobrenome')
     contatos = Contato.objects.annotate(nomeCompleto = campos).order_by().filter(
         Q(nomeCompleto__icontains = busca)|Q(email__icontains = busca),

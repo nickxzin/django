@@ -4,8 +4,15 @@
 {%block 'conteudo'%}
 <h2>Estamos no Index</h2>
 <a href="{% url 'sobre'%}">Sobre</a>
-
-<form action="{% url 'busca'%}" method="get">
+<br>
+{%if messages%}
+    {%for message in messages%}
+        <div class="alert {{message.tags}}">
+            {{message}}
+        </div>
+    {%endfor%}
+{%endif%}
+<form action="{% url 'busca'%}" method="get"></form>
     <input value="{{request.GET.busca}}" type="search" name="busca" id="searchInput" placeholder="Digite Aqui">
 </form>
 

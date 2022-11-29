@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{%block 'conteudo'%}
+<form action="{%url 'cadastro'%}" method="post">
+    {%csrf_token%}
+        {%if messages%}
+            {%for message in messages%}
+                <div class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+            {%endfor%}
+        {%endif%}
+    <div class="formulario">
+        <label>Email</label>
+        <input type="email" name="email" value="{{request.POST.email}}">
+    </div>
+    <div class="formulario">
+        <label>Usuario</label>
+        <input type="text" name="usuario" value="{{request.POST.usuario}}">
+    </div>
+    <div class="formulario">
+        <label>Senha</label>
+        <input type="password" name="senha">
+    </div>
+    <div class="formulario">
+        <label>Repetir a senha</label>
+        <input type="password" name="senha2">
+    </div>
+    <button type="submit">Cadastrar-me</button>
+</form>
+
+{%endblock%}
