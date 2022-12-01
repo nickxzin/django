@@ -1,29 +1,23 @@
-from distutils.command.upload import upload
-from email.policy import default
 from django.db import models
-
 from django.utils import timezone
 
-#from django.utils
-
 # Create your models here.
-
 class Categoria(models.Model):
-    nome = models.CharField(max_length=255)
+    nome = models.CharField(max_length=255 )
 
     def __str__(self):
         return self.nome
 
 class Contato(models.Model):
-    nome = models.CharField(max_length=255)
+    nome = models.CharField(max_length=255,unique=True)
     sobrenome = models.CharField(max_length=255, blank=True)
-    Telefone = models.CharField(max_length=255)
-    email = models.CharField(max_length=255, blank=True)
-    dataCriacao = models.DateTimeField(default=timezone.now)
+    telefone = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, blank= True)
+    data_criacao = models.DateTimeField(default=timezone.now)   
     descricao = models.TextField(blank=True)
-    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    categoria = models.ForeignKey(Categoria,on_delete=models.DO_NOTHING)
     mostrar = models.BooleanField(default=True)
-    foto = models.ImageField(blank = True, upload_to='fotos/%Y/%m/%d')
+    foto = models.ImageField(blank=True,upload_to='fotos/%Y/%m/%d') #linha nova
 
     def __str__(self):
-        return self.nome+" "+self.sobrenome
+        return self.nome

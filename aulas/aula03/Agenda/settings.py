@@ -11,9 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
 import os
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s760xz)7!74_#8b0_n9m^luudx*#j5evqy=*yl5etpv-$st(qo'
+SECRET_KEY = 'django-insecure-x392ce%&*en%ztr^4hh0=270gc#bevd%=lmwr@ex8re6)05d)4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'contatos.apps.ContatosConfig',
-    'accounts'
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,10 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'templates/static')
-]
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/static')]
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = 'media/'
 
@@ -137,8 +132,8 @@ from django.contrib.messages import constants
 
 MESSAGE_TAGS = {
     constants.ERROR: 'alert-error',
-    constants.DEBUG: 'alert-debug',
-    constants.INFO: 'alert-info',
-    constants.SUCCESS: 'alert-sucess',
     constants.WARNING: 'alert-warning',
+    constants.DEBUG: 'alert-debug',
+    constants.SUCCESS: 'alert-sucess',
+    constants.INFO: 'alert-info',
 }

@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+{%block 'title'%}{{contato.nome}}{%endblock%}
+{%block 'conteudo'%}
+{%if contato.foto%}
+<img src="{{contato.foto.url}}" alt="" style="max-width: 200px;">
+{%endif%}
+<h1>{{contato.sobrenome}}</h1><br>
+<h2>{{contato.data_criacao|date:'d/M/Y H:i:s'}}</h2>
+{%endblock%}
