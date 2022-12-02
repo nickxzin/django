@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import Http404
-from .models import Contato
-
 # Create your views here.
 def login(request):
     if request.method != 'POST':
@@ -51,24 +49,6 @@ def cadastro(request):
     password=senha)
     user.save()
     return redirect('login')
-
-def contatos(request):
-    contatos = Contato.objects.order_by('nome').filter(mostrar = True)
-    paginator = Paginator(contatos, 1)
-    page = request.GET.get('page')
-    contatos = paginator.get_page(page)
-    return render(request, 'contatos/contatos.html',{
-        'contatos': contatos
-    })
-
-def verContato(request,contatoNome):
-    # contato= Contato.objects.get(nome=contatoNome)
-    contato = get_object_or_404(Contato,nome=contatoNome)
-    if not contato.mostrar:
-        raise Http404()
-    return render(request, 'contatos/verContato.html',{
-        'contato': contato
-    })
 
 @login_required(redirect_field_name='login')
 def dashboard(request):

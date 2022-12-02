@@ -6,6 +6,4 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('cadastro/', views.cadastro, name='cadastro'),
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('contatos/', views.contatos, name='contatos'),
-    path('<str:contatoNome>', views.verContato, name='verContato'),
 ]

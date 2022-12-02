@@ -14,14 +14,25 @@ DASHBOARD
 <button type="submit" style="width: 300px;">deslogar</button>
 </form>
 
-{% for contato in contatos %}
-    {% if contato.mostrar %}
-    <div class="contact">
-        <h3><a href="{% url 'verContato' contato.nome %}">{{contato.nome}}</a></h3>
-        <h3>{{contato.sobrenome}}</h3>
-        <h3>{{contato.telefone}}</h3>
-        <h3>{{contato.categoria}}</h3>
+<form action="{% url 'dashboard' %}" method="post" style="display:flex; flex-direction:column">
+    {%csrf_token%}
+    {%if messages%}
+        {%for message in messages%}
+        <div class="alert {{message.tags}}">
+            {{message}}
+        </div>         
+        {%endfor%}
+    {%endif%}
+    <div class="formulario">
+        <label>Nome</label>
+        <input type="text" name="nome" >
     </div>
-{% endif %}
-{% endfor %}
+    <div class="formulario">
+        <label>Telefone</label>
+        <input type="text" name="telefone">
+    </div>
+
+
+</form>
+
 {%endblock%}
