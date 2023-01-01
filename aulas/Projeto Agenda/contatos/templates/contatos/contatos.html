@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+{%block 'title'%}contatos{%endblock%}
+{%block 'conteudo'%}
+<div class="contacts">
+    <form action="{% url 'busca'%}" method="get">
+        <input type="search" name="busca" id="searchInput" placeholder="Digite sua pesquisa" value="{{request.GET.busca}}">
+    </form>
+    {%if messages%}
+        {%for message in messages%}
+        <div class="alert {{message.tags}}">
+            {{message}} {{message.tags}}
+        </div>         
+        {%endfor%}
+    {%endif%}
+    <div class="infos">
+        <h2>Nome</h2>
+        <h2>Sobrenome</h2>
+        <h2>Telefone</h2>
+        <h2>Categoria</h2>
+    </div>    
+    {% for contato in contatos %}
+        {% if contato.mostrar %}
+        <div class="contact">
+            <h3><a href="{% url 'verContato' contato.nome %}">{{contato.nome}}</a></h3>
+            <h3>{{contato.sobrenome}}</h3>
+            <h3>{{contato.telefone}}</h3>
+            <h3>{{contato.categoria}}</h3>
+        </div>
+        {% endif %}
+    {% endfor %}
+    <div class="paginator">
+        {% for pagina in contatos.paginator.page_range %}
+        {% if contatos.number == pagina %}
+            <a style="background-color: grey;" href="?page={{ pagina }}&busca={{request.GET.busca}}">{{pagina}}</a>
+        {% else %}
+            <a href="?page={{ pagina }}&busca={{request.GET.busca}}">{{pagina}}</a>
+        {%endif%}
+        {% endfor %}
+    </div>
+    
+</div>
+{%endblock%}
